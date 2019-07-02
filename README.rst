@@ -1,5 +1,26 @@
 .. This file contains a series of comments that are used to include sections of this README in other files. Do not modify these comments unless you know what you are doing. tag:intro-begin
 
+Intall certbot on AWS Linux2
+-----------------------------
+```
+# configure Nginx, and setup 80 port
+sudo yum install python27-devel git
+sudo git clone https://github.com/BigMurry/certbot.git /opt/letsencrypt
+sudo /opt/letsencrypt/letsencrypt-auto --debug
+
+# stop nginx service
+sudo /opt/letsencrypt/certbot-auto certonly --standalone -d relay.udap.io
+
+# edit nginx.conf and modify cert part
+sudo service nginx restart
+```
+
+Credits to:
+1. [Gifford Nowland](https://medium.com/@gnowland/deploying-lets-encrypt-on-an-amazon-linux-ami-ec2-instance-f8e2e8f4fc1f)
+2. [Andre Nakkurt](https://medium.com/@andrenakkurt/great-guide-thanks-for-putting-this-together-gifford-nowland-c3ce0ea2455)
+
+Original README
+--------------------
 Certbot is part of EFF’s effort to encrypt the entire Internet. Secure communication over the Web relies on HTTPS, which requires the use of a digital certificate that lets browsers verify the identity of web servers (e.g., is that really google.com?). Web servers obtain their certificates from trusted third parties called certificate authorities (CAs). Certbot is an easy-to-use client that fetches a certificate from Let’s Encrypt—an open certificate authority launched by the EFF, Mozilla, and others—and deploys it to a web server.
 
 Anyone who has gone through the trouble of setting up a secure website knows what a hassle getting and maintaining a certificate is. Certbot and Let’s Encrypt can automate away the pain and let you turn on and manage HTTPS with simple commands. Using Certbot and Let's Encrypt is free, so there’s no need to arrange payment.
