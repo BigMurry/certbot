@@ -2,7 +2,7 @@
 
 Intall certbot on AWS Linux2
 -----------------------------
-.. code-block:: shell
+:: shell
     # configure Nginx, and setup 80 port
     sudo yum install python27-devel git
     sudo git clone https://github.com/BigMurry/certbot.git /opt/letsencrypt
